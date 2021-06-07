@@ -25,6 +25,9 @@
             <asp:CompareValidator ID="cv_password" runat="server" ErrorMessage="二次密碼不一致" ForeColor="Red" ControlToCompare="tb_password" ControlToValidate="tb_checkpassword"></asp:CompareValidator><br /><br />
             <asp:Label ID="lb_name" runat="server" Text="姓名："></asp:Label>
             <asp:TextBox ID="tb_name" runat="server"></asp:TextBox><br /><br />
+            <asp:Label ID="lb_phone" runat="server" Text="連絡電話 phone："></asp:Label>
+            <asp:TextBox ID="tb_phone" runat="server" MaxLength="10"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="rev_phone" runat="server" ErrorMessage="格式錯誤" ForeColor="Red" ValidationExpression="09\w{8}" ControlToValidate="tb_phone"></asp:RegularExpressionValidator><br /><br />
         </div>
         <div style="text-align:center">
             <asp:Button ID="btn_signup" runat="server" Text="創建帳號" OnClick="btn_signup_Click" />

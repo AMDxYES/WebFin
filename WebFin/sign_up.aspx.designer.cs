@@ -132,6 +132,33 @@ namespace WebFin
         protected global::System.Web.UI.WebControls.TextBox tb_name;
 
         /// <summary>
+        /// lb_phone 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_phone;
+
+        /// <summary>
+        /// tb_phone 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_phone;
+
+        /// <summary>
+        /// rev_phone 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_phone;
+
+        /// <summary>
         /// btn_signup 控制項。
         /// </summary>
         /// <remarks>
