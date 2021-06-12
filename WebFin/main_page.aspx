@@ -17,6 +17,11 @@
                 <asp:ListItem>台北市</asp:ListItem>
                 <asp:ListItem>新北市</asp:ListItem>
             </asp:DropDownList>
+
+            <asp:Label ID="lb_Atea" runat="server" Text="地區"></asp:Label>
+            <asp:DropDownList ID="ddl_Area" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_Area_SelectedIndexChanged">
+                <asp:ListItem>全部</asp:ListItem>
+            </asp:DropDownList>
         </div>
         <div style="text-align:center;">
             <asp:GridView ID="gv_data" runat="server" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal">
