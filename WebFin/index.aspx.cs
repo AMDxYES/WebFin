@@ -19,7 +19,7 @@ namespace WebFin
 
         protected void btn_login_Click(object sender, EventArgs e)
         {
-            string msg = "";
+            string msg = "",mail="";
             bool login = false;
             o_con.Open();
             SqlCommand o_com = new SqlCommand("select * from Users", o_con);
@@ -34,6 +34,7 @@ namespace WebFin
                     {
                         if (o_data[1].ToString() == tb_password.Text)
                         {
+                            mail = o_data[0].ToString();
                             login = true;
                             break;
                         }
@@ -55,7 +56,8 @@ namespace WebFin
             o_con.Close();
             if (login)
             {
-                Response.Redirect("./main_page.aspx", true);
+                msg = "main_page.aspx?name="+mail;
+                Response.Redirect(msg);
             }
             else
             {

@@ -11,7 +11,7 @@ namespace WebFin
 {
 
 
-    public partial class main_page
+    public partial class addItem
     {
 
         /// <summary>
@@ -24,58 +24,13 @@ namespace WebFin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// main 控制項。
+        /// lb_city 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main;
-
-        /// <summary>
-        /// lkbtn_user 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lkbtn_user;
-
-        /// <summary>
-        /// btn_addItem 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addItem;
-
-        /// <summary>
-        /// btn_logout 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_logout;
-
-        /// <summary>
-        /// lb_Msg 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_Msg;
-
-        /// <summary>
-        /// lb_SelCity 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_SelCity;
+        protected global::System.Web.UI.WebControls.Label lb_city;
 
         /// <summary>
         /// ddl_City 控制項。
@@ -87,13 +42,13 @@ namespace WebFin
         protected global::System.Web.UI.WebControls.DropDownList ddl_City;
 
         /// <summary>
-        /// lb_Atea 控制項。
+        /// lb_area 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_Atea;
+        protected global::System.Web.UI.WebControls.Label lb_area;
 
         /// <summary>
         /// ddl_Area 控制項。
@@ -123,21 +78,66 @@ namespace WebFin
         protected global::System.Web.UI.WebControls.DropDownList ddl_type;
 
         /// <summary>
-        /// gv_data 控制項。
+        /// lb_img 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_data;
+        protected global::System.Web.UI.WebControls.Label lb_img;
 
         /// <summary>
-        /// lb_Nodata 控制項。
+        /// File1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_Nodata;
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
+
+        /// <summary>
+        /// lb_shopname 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_shopname;
+
+        /// <summary>
+        /// tb_shopname 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_shopname;
+
+        /// <summary>
+        /// lb_address 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_address;
+
+        /// <summary>
+        /// tb_address 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_address;
+
+        /// <summary>
+        /// btn_add 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_add;
     }
 }

@@ -21,10 +21,23 @@ namespace WebFin
                                         "貢寮", "新店", "坪林", "烏來", "永和", "中和", "土城", "三峽", "樹林",
                                         "鶯歌", "三重", "新莊", "泰山", "林口", "蘆洲", "五股", "八里", "淡水",
                                         "三芝", "石門" };
+        string[] type = new string[] { "全部","火鍋","牛排", "燒烤", "小吃", "自助餐", "中式快餐", "中式餐廳", "日式料理","韓式料理", "休閒飲料",
+                                       "早餐專賣", "西式速食", "西式餐廳", "咖啡簡餐", "甜點冰品" };
         string[] city = new string[] { "全部", "台北市", "新北市" };
-
+        string user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["name"] != null)
+            {
+                user = Request.QueryString["name"];
+                o_con.Open();
+                SqlCommand o_com = new SqlCommand("select Name from Users where Mail='" + user + "';", o_con);
+                SqlDataReader o_data = o_com.ExecuteReader();
+                o_data.Read();
+                user = o_data.GetString(0);
+                o_con.Close();
+                lkbtn_user.Text = "使用者名稱:" + user;
+            }
             sql_query(sql);
         }
 
@@ -111,6 +124,21 @@ namespace WebFin
             {
 
             }
+        }
+
+        protected void btn_addItem_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./addItem.aspx?name=" + user);
+        }
+
+        protected void btn_logout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./index.aspx");
+        }
+
+        protected void ddl_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
