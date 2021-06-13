@@ -13,7 +13,7 @@ namespace WebFin
     public partial class main_page : System.Web.UI.Page
     {
         SqlConnection o_con = new SqlConnection(ConfigurationManager.ConnectionStrings["myCon"].ConnectionString);
-        string sql = "select City,Area,Type,ShopName,Address,Evaluation from Restaurant;";
+        string sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant;";
 
         string[] area1 = new string[] { "全部","中正", "大同", "中山", "松山", "大安", "萬華", "信義", "士林", "北投",
                                         "內湖", "南港", "文山", };
@@ -63,12 +63,7 @@ namespace WebFin
                 ddl_Area.Items.Add("全部");
             }
 
-            if (ddl_City.SelectedIndex != 0)
-            {
-
-                sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "';";
-            }
-            sql_query(sql);
+            selddl();
 
         }
 
@@ -100,30 +95,7 @@ namespace WebFin
 
         protected void ddl_Area_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddl_Area.SelectedIndex != 0)
-            {
-                if (ddl_City.SelectedIndex == 1)
-                {
-                    sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "' and Area=N'" + area1[ddl_Area.SelectedIndex] + "區';";
-                }
-                else
-                {
-                    sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "' and Area=N'" + area2[ddl_Area.SelectedIndex] + "區';";
-                }
-            }
-            else
-            {
-                sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "';";
-            }
-            sql_query(sql);
-        }
-
-        protected void gv_data_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "sel")
-            {
-
-            }
+            selddl();
         }
 
         protected void btn_addItem_Click(object sender, EventArgs e)
@@ -138,7 +110,103 @@ namespace WebFin
 
         protected void ddl_type_SelectedIndexChanged(object sender, EventArgs e)
         {
+            selddl();
+        }
 
+        void selddl()
+        {
+            if (ddl_City.SelectedIndex != 0)
+            {
+                if (ddl_Area.SelectedIndex != 0)
+                {
+                    if (ddl_type.SelectedIndex != 0)
+                    {
+                        if (ddl_City.SelectedIndex == 1)
+                        {
+                            sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "' and Area=N'" + area1[ddl_Area.SelectedIndex] + "區' and Type=N'" + type[ddl_type.SelectedIndex] + "' ;";
+                        }
+                        else
+                        {
+                            sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "' and Area=N'" + area1[ddl_Area.SelectedIndex] + "區' and Type=N'" + type[ddl_type.SelectedIndex] + "' ;";
+                        }
+
+                    }
+                    else
+                    {
+
+                        if (ddl_City.SelectedIndex == 1)
+                        {
+                            sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "' and Area=N'" + area1[ddl_Area.SelectedIndex] + "區';";
+                        }
+                        else
+                        {
+                            sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "' and Area=N'" + area1[ddl_Area.SelectedIndex] + "區';";
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (ddl_type.SelectedIndex != 0)
+                    {
+                        sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "' and Type=N'" + type[ddl_type.SelectedIndex] + "' ;";
+                    }
+                    else
+                    {
+                        sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where City=N'" + city[ddl_City.SelectedIndex] + "';";
+                    }
+
+                }
+
+            }
+            else
+            {
+                if (ddl_type.SelectedIndex != 0)
+                {
+                    sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant where Type=N'" + type[ddl_type.SelectedIndex] + "';";
+                }
+                else
+                {
+                    sql = "select Id,City,Area,Type,ShopName,Address,Evaluation from Restaurant;";
+                }
+            }
+            sql_query(sql);
+        }
+
+        protected void btn_backmain_Click(object sender, EventArgs e)
+        {
+            main.Visible = true;
+            second_page.Visible = false;
+        }
+
+        protected void gv_data_RowCommand1(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "sel")
+            {
+                main.Visible = false;
+                second_page.Visible = true;
+                int id = Convert.ToInt32(e.CommandArgument);
+                o_con.Open();
+                SqlCommand o_com = new SqlCommand("select Picture from Restaurant where Id='" + gv_data.Rows[id].Cells[2].Text + "';", o_con);
+                SqlDataReader o_data = o_com.ExecuteReader();
+                //lb_name.Text = gv_data.Rows[id].Cells[2].Text;
+                o_data.Read();
+                string img = o_data.GetString(0);
+                o_con.Close();
+
+                img_show.ImageUrl = "Resources\\" + img;
+                lb_name.Text = "店名：" + gv_data.Rows[id].Cells[6].Text;
+                lb_type2.Text = "類別：" + gv_data.Rows[id].Cells[5].Text;
+                lb_address.Text = "地址：" + gv_data.Rows[id].Cells[7].Text;
+                if (gv_data.Rows[id].Cells[8].Text == "0")
+                {
+                    lb_evaluation.Text = "評價：暫無評價";
+                }
+                else
+                {
+                    lb_evaluation.Text = "評價：" + gv_data.Rows[id].Cells[8].Text;
+                }
+            }
         }
     }
 }

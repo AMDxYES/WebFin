@@ -30,6 +30,7 @@
             <asp:TextBox ID="tb_shopname" runat="server"></asp:TextBox><br /><br />
             <asp:Label ID="lb_address" runat="server" Text="店家地址"></asp:Label>
             <asp:TextBox ID="tb_address" runat="server"></asp:TextBox><br /><br />
+             <asp:Button ID="btn_back" runat="server" Text="返回主頁" />
             <asp:Button ID="btn_add" runat="server" Text="確定新增" OnClick="btn_add_Click" />
         </div>
     </form>

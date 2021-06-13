@@ -49,7 +49,7 @@
             </asp:DropDownList>
         </div>
         <div >
-            <asp:GridView ID="gv_data" runat="server" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal">
+            <asp:GridView ID="gv_data" runat="server" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" OnRowCommand="gv_data_RowCommand1">
                 <Columns>
                     <asp:ButtonField ButtonType="Button" CommandName="sel" Text="詳細資訊" />
                 </Columns>
@@ -66,6 +66,17 @@
             <br />
             <asp:Label ID="lb_Nodata" runat="server" Text="此地區尚無任何店家資料" Visible="False"></asp:Label>
         </div>
+        </div>
+
+         <div id="second_page" runat="server" visible="false">
+            <div>
+                <asp:Image ID="img_show" runat="server" Height="200" Width="300px" /><br /><br />
+                <asp:Label ID="lb_name" runat="server" Text="Label"></asp:Label><br /><br />
+                <asp:Label ID="lb_type2" runat="server" Text="Label"></asp:Label><br /><br />
+                <asp:Label ID="lb_address" runat="server" Text="Label"></asp:Label><br /><br />
+                <asp:Label ID="lb_evaluation" runat="server" Text="Label"></asp:Label><br /><br />
+                <asp:Button ID="btn_backmain" runat="server" Text="返回主頁" Font-Size="Medium" OnClick="btn_backmain_Click" />
+            </div>
         </div>
     </form>
 </body>

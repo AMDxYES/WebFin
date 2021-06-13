@@ -139,5 +139,68 @@ namespace WebFin
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_Nodata;
+
+        /// <summary>
+        /// second_page 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl second_page;
+
+        /// <summary>
+        /// img_show 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_show;
+
+        /// <summary>
+        /// lb_name 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_name;
+
+        /// <summary>
+        /// lb_type2 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_type2;
+
+        /// <summary>
+        /// lb_address 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_address;
+
+        /// <summary>
+        /// lb_evaluation 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_evaluation;
+
+        /// <summary>
+        /// btn_backmain 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_backmain;
     }
 }
