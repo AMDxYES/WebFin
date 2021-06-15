@@ -27,6 +27,7 @@ namespace WebFin
             if (Request.QueryString["name"] != null)
             {
                 name = Request.QueryString["name"];
+                Response.Write(name);
             }
             foreach (string i in type)
             {
@@ -44,18 +45,18 @@ namespace WebFin
                     if (File1.PostedFile.FileName != "")
                     {
                         img = File1.PostedFile.FileName;
-                        File1.PostedFile.SaveAs("E:\\program\\WebFin\\WebFin\\Resources\\" + img);
+                        File1.PostedFile.SaveAs("E:\\My data\\WebFin\\WebFin\\Resources\\" + img);
                     }
                     else
                     {
-                        img = "default.png";
+                        img = "default.jpg";
                     }
                     o_con.Open();
                     SqlCommand o_com = new SqlCommand("select count(Id) from Restaurant", o_con);
                     int count = Convert.ToInt32(o_com.ExecuteScalar());
                     o_con.Close();
                     o_con.Open();
-                    o_com.CommandText = "insert into Restaurant values (@Id,@City,@Area,@Type,@Img,@Name,@Address,0,0);";
+                    o_com.CommandText = "insert into Restaurant values (@Id,@City,@Area,@Type,@Img,@Name,@Address,0,0,0);";
                     o_com.Parameters.Add("@Id", SqlDbType.Int);
                     o_com.Parameters["@Id"].Value = count + 1;
                     o_com.Parameters.Add("@City", SqlDbType.NVarChar);
@@ -73,7 +74,7 @@ namespace WebFin
                     o_com.ExecuteNonQuery();
                     o_con.Close();
 
-                    Response.Redirect("main_page.aspx?name=" + name);
+                    Response.Redirect("./main_page.aspx?name=" + name);
                 }
                 else
                 {
@@ -106,6 +107,11 @@ namespace WebFin
                     ddl_Area.Items.Add(i);
                 }
             }
+        }
+
+        protected void btn_back_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./main_page.aspx?name="+name);
         }
     }
 }

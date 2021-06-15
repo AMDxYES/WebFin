@@ -56,7 +56,7 @@ namespace WebFin
             o_con.Close();
             if (login)
             {
-                msg = "main_page.aspx?name="+mail;
+                msg = "main_page.aspx?mail="+mail;
                 Response.Redirect(msg);
             }
             else

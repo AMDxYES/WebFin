@@ -25,11 +25,13 @@ namespace WebFin
                                        "早餐專賣", "西式速食", "西式餐廳", "咖啡簡餐", "甜點冰品" };
         string[] city = new string[] { "全部", "台北市", "新北市" };
         string user;
+        int shop_id,evaluation_sum,evaluation_count;
+        int evaluation_new_sum, evaluation_new_count, evaluation_avg;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["name"] != null)
+            if (Request.QueryString["mail"] != null)
             {
-                user = Request.QueryString["name"];
+                user = Request.QueryString["mail"];
                 o_con.Open();
                 SqlCommand o_com = new SqlCommand("select Name from Users where Mail='" + user + "';", o_con);
                 SqlDataReader o_data = o_com.ExecuteReader();
@@ -37,6 +39,11 @@ namespace WebFin
                 user = o_data.GetString(0);
                 o_con.Close();
                 lkbtn_user.Text = "使用者名稱:" + user;
+            }
+            else if(Request.QueryString["name"]!=null) 
+            {
+                user = Request.QueryString["name"];
+                lkbtn_user.Text = "使用者名稱: " + user;
             }
             sql_query(sql);
         }
@@ -177,36 +184,78 @@ namespace WebFin
         {
             main.Visible = true;
             second_page.Visible = false;
+            btn_eva.Enabled = true;
+            btn_eva.Text = "送出評價";
         }
 
         protected void gv_data_RowCommand1(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "sel")
             {
-                main.Visible = false;
-                second_page.Visible = true;
-                int id = Convert.ToInt32(e.CommandArgument);
-                o_con.Open();
-                SqlCommand o_com = new SqlCommand("select Picture from Restaurant where Id='" + gv_data.Rows[id].Cells[2].Text + "';", o_con);
-                SqlDataReader o_data = o_com.ExecuteReader();
-                //lb_name.Text = gv_data.Rows[id].Cells[2].Text;
-                o_data.Read();
-                string img = o_data.GetString(0);
-                o_con.Close();
-
-                img_show.ImageUrl = "Resources\\" + img;
-                lb_name.Text = "店名：" + gv_data.Rows[id].Cells[6].Text;
-                lb_type2.Text = "類別：" + gv_data.Rows[id].Cells[5].Text;
-                lb_address.Text = "地址：" + gv_data.Rows[id].Cells[7].Text;
-                if (gv_data.Rows[id].Cells[8].Text == "0")
+                try
                 {
-                    lb_evaluation.Text = "評價：暫無評價";
+                    main.Visible = false;
+                    second_page.Visible = true;
+                    int id = Convert.ToInt32(e.CommandArgument);
+                    o_con.Open();
+                    SqlCommand o_com = new SqlCommand("select * from Restaurant where Id='" + gv_data.Rows[id].Cells[2].Text + "';", o_con);
+                    SqlDataReader o_data = o_com.ExecuteReader();
+                    shop_id=Convert.ToInt32( gv_data.Rows[id].Cells[2].Text);
+                    o_data.Read();
+                    string img = o_data[4].ToString();
+                    evaluation_count = Convert.ToInt32(o_data[8].ToString());
+                    evaluation_sum = Convert.ToInt32(o_data[9].ToString());
+                    o_con.Close();
+                    img_show.ImageUrl = "Resources\\" + img;
+                    lb_name.Text = "店名：" + gv_data.Rows[id].Cells[6].Text;
+                    lb_type2.Text = "類別：" + gv_data.Rows[id].Cells[5].Text;
+                    lb_address.Text = "地址：" + gv_data.Rows[id].Cells[7].Text;
+                    ViewState["id"] = shop_id;
+                    ViewState["sum"] = evaluation_sum;
+                    ViewState["count"] = evaluation_count;
+                    if (gv_data.Rows[id].Cells[8].Text == "0")
+                    {
+                        lb_evaluation.Text = "評價：暫無評價";
+                    }
+                    else
+                    {
+                        lb_evaluation.Text = "評價：" + gv_data.Rows[id].Cells[8].Text;
+                    }
+                    
                 }
-                else
+                catch(Exception er)
                 {
-                    lb_evaluation.Text = "評價：" + gv_data.Rows[id].Cells[8].Text;
+                    Response.Write("錯誤:" + er.ToString());
                 }
+                
             }
+        }
+
+        protected void btn_eva_Click(object sender, EventArgs e)
+        {
+            shop_id =Convert.ToInt32( ViewState["id"]);
+            evaluation_sum = Convert.ToInt32(ViewState["sum"]);
+            evaluation_count = Convert.ToInt32(ViewState["count"]);
+            evaluation_new_sum = int.Parse(rbl_eva.SelectedValue) + evaluation_sum;
+            evaluation_new_count = evaluation_count + 1;
+            evaluation_avg = Convert.ToInt32(evaluation_new_sum / evaluation_new_count);
+            try
+            {
+                o_con.Open();
+                SqlCommand o_com = new SqlCommand("update Restaurant set EvaluationSum=" + evaluation_new_sum + " , EvaluationCount=" + evaluation_new_count + " , Evaluation=" + evaluation_avg + " where Id=" + shop_id + " ;", o_con);
+                int result = o_com.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    btn_eva.Text = "評價成功！";
+                    btn_eva.Enabled = false;
+                }
+                o_con.Close();
+            }
+            catch(Exception er)
+            {
+                Response.Write("錯誤:" + er.Message);
+            }
+           
         }
     }
 }
