@@ -24,15 +24,19 @@ namespace WebFin
         string name;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                foreach (string i in type)
+                {
+                    ddl_type.Items.Add(i);
+                }
+            }
             if (Request.QueryString["name"] != null)
             {
                 name = Request.QueryString["name"];
                 Response.Write(name);
             }
-            foreach (string i in type)
-            {
-                ddl_type.Items.Add(i);
-            }
+           
         }
 
         protected void btn_add_Click(object sender, EventArgs e)
